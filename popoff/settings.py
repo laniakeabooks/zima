@@ -26,7 +26,11 @@ SECRET_KEY = "django-insecure-sia0kvt$k(r#+)o0t-v5(!olg8$hdgvvhhqrjq9bl)e^3quh3&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get("DEBUG") == "1" else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "01z.co",
+]
 
 ADMINS = [("Theodore Keloglou", "zf@sirodoht.com")]
 
