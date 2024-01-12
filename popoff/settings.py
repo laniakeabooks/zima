@@ -70,6 +70,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "popoff.wsgi.application"
 
 SESSION_COOKIE_SAMESITE = "Strict"
+SESSION_COOKIE_AGE = 31449600  # 60 * 60 * 24 * 7 * 52 = 1 year in seconds
 
 AUTH_USER_MODEL = "main.User"
 
