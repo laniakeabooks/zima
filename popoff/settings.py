@@ -71,6 +71,8 @@ WSGI_APPLICATION = "popoff.wsgi.application"
 
 SESSION_COOKIE_SAMESITE = "Strict"
 
+AUTH_USER_MODEL = "main.User"
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
