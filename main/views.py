@@ -17,3 +17,10 @@ class CreateEntry(CreateView):
         url += "?id="
         url += str(randint(1_000_000, 10_000_000))
         return url
+
+
+def submit_success(request):
+    if request.GET.get("id") is not None:
+        return render(request, "main/submit_success.html")
+    else:
+        return redirect("index")
