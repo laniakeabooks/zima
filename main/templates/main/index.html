@@ -1,5 +1,61 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-<h1>Hi!</h1>
+<main>
+    <h1><a href="/">01z.co</a></h1>
+    <p>
+        <strong>meet people based on intellectual interests</strong>
+    </p>
+    <p>
+        In his 1971 book, Ivan Illich envisions a system from the future, with which
+        intellectual matches between people happen in large cities. This is an
+        implementation of that system.
+    </p>
+    <form method="post">
+        <p>
+            To use:
+        </p>
+
+        <p style="padding-left: 16px;">
+            1. Enter a way for one to get in touch with you. This could be an email address or
+            a phone number or some other way. It has to be personal, ie. not corresponding
+            to something that belongs to the group or is public.
+        </p>
+        {{ form.contact.errors }}
+        <p style="padding-left: 16px;">
+            <input type="text" name="contact" maxlength="300" required id="id_contact" placeholder="email address / phone">
+            <br><small>(how to contact)</small>
+        </p>
+
+        <p style="padding-left: 16px;">
+            2. Enter a link which contains or presents or talks about a book, an article, a
+            film, a podcast episode on which you seek a partner for discussion.
+        </p>
+        {{ form.resource.errors }}
+        <p style="padding-left: 16px;">
+            <input type="url" name="resource" required id="id_resource" placeholder="https://...">
+            <br><small>(thing of interest)</small>
+        </p>
+
+        {{ form.non_field_errors }}
+        <p style="padding-left: 16px;">
+            <input type="submit" value="Submit">
+        </p>
+
+        <p>
+            Within a few days, you will receive a list of people (their names and ways to
+            contact them) who have taken the same initiative. This list will enable you to
+            contact them, in order to arrange a meeting (online or offline) with persons for
+            which they are exclusively known to you by the fact that they requested a
+            dialogue about the same subject.
+        </p>
+    </form>
+
+    <hr>
+    <p>
+        <a href="">about</a>
+        / <a href="https://github.com/sirodoht/popoff">source code</a>
+        / <a href="">data privacy</a>
+    </p>
+</main>
 {% endblock %}
