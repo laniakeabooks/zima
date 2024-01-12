@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}01z.co — meet people based on intellectual interests{% endblock %}</title>
+        <meta name="description" content="meet people based on intellectual interests">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        </style>
+    </head>
+    <body>
+        {% if messages %}
+        <aside>
+            {% for message in messages %}
+            <div {% if message.tags %}class="alert-{{ message.tags }}"{% endif %}>{{ message|safe }}</div>
+            {% endfor %}
+        </aside>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
