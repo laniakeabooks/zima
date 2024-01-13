@@ -28,3 +28,7 @@ def submit_success(request):
 
 def about(request):
     return render(request, "main/about.html")
+
+
+def privacy(request):
+    return render(request, "main/privacy.html")
