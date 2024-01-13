@@ -29,6 +29,4 @@ jobs:
         DEBUG: '1'
         SECRET_KEY: 'xxx'
     - name: Lint
-      run: |
-        ruff check .
-        ruff check --select I .
+      run: ruff check . && ruff check --select I .
