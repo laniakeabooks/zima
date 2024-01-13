@@ -24,3 +24,7 @@ def submit_success(request):
         return render(request, "main/submit_success.html")
     else:
         return redirect("index")
+
+
+def about(request):
+    return render(request, "main/about.html")
