@@ -7,7 +7,7 @@ from main import models
 class IndexTest(TestCase):
     def test_get(self):
         response = self.client.get(reverse("index"))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
 
 class SubmitTest(TestCase):
