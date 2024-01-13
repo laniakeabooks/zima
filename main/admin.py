@@ -3,6 +3,8 @@ from django.contrib.auth.admin import UserAdmin as DjUserAdmin
 
 from main import models
 
+admin.site.site_header = "01z.co admin"
+
 
 @admin.register(models.User)
 class UserAdmin(DjUserAdmin):
