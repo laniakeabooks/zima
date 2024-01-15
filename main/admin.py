@@ -42,7 +42,26 @@ class UserAdmin(DjUserAdmin):
 class EntryAdmin(admin.ModelAdmin):
     list_display = (
         "id",
+        "email",
         "contact",
         "resource",
     )
-    search_fields = ("contact", "resource")
+    search_fields = ("email", "contact", "resource")
+
+
+@admin.register(models.Matching)
+class MatchingAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "created_at",
+        "person_who_received",
+        "person_who_was_received",
+    )
+
+
+@admin.register(models.Matchlog)
+class MatchlogAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "created_at",
+    )
