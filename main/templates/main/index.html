@@ -17,18 +17,34 @@
         </p>
 
         <p style="padding-left: 16px;">
-            1. Enter a way for one to get in touch with you. This could be an email address or
-            a phone number or some other way. It has to be personal, ie. not corresponding
-            to something that belongs to the group or is public.
+            1. Enter your email address, in which we will send the list of people
+            interested in the same thing as you. This email address will remain private
+            and will not be shared with anyone else.
         </p>
-        {{ form.contact.errors }}
+        {{ form.email.errors }}
         <p style="padding-left: 16px;">
-            <input type="text" name="contact" maxlength="300" required id="id_contact" placeholder="email address / phone">
-            <br><small>(how to contact)</small>
+            <input type="email" name="email" required id="id_email" placeholder="email address">
+            <br><small>(private email)</small>
         </p>
 
         <p style="padding-left: 16px;">
-            2. Enter a link which contains or presents or talks about a book, an article, a
+            2. Enter a way for other people to get in touch with you. This could be an
+            email address (the same or different than the one above) or a phone number
+            or some other way. It has to be personal, ie. not corresponding to
+            something that belongs to the group or is public.
+        </p>
+        <p style="padding-left: 16px;">
+            This email address will be shared with people interested in the same thing
+            as you.
+        </p>
+        {{ form.contact.errors }}
+        <p style="padding-left: 16px;">
+            <input type="text" name="contact" maxlength="300" required id="id_contact" placeholder="email address or phone">
+            <br><small>(how others contact you)</small>
+        </p>
+
+        <p style="padding-left: 16px;">
+            3. Enter a link which contains or presents or talks about a book, an article, a
             film, a podcast episode on which you seek a partner for discussion.
         </p>
         {{ form.resource.errors }}

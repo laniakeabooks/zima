@@ -9,8 +9,13 @@ from main import models
 
 class CreateEntry(CreateView):
     model = models.Entry
-    fields = ["contact", "resource"]
+    fields = ["email", "contact", "resource"]
     template_name = "main/index.html"
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # TODO: send verification email
+        return super().form_valid(form)
 
     def get_success_url(self):
         url = reverse_lazy("submit_success")
