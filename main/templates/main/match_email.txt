@@ -5,10 +5,10 @@ This is 01z.co — the place to meet people based on intellectual interests.
 Great news, there is one or more people interested in the same thing of interest as you!
 
 {% for entry in entry_list %}
-thing of interest:
+Thing of interest:
     {{ entry.resource }}
 
-contact how:
+Contact how:
     {{ entry.contact }}
 
 ---
