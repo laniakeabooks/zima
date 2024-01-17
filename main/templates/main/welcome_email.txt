@@ -12,7 +12,7 @@ and specified this way for people to contact you:
 
 {{ contact }}
 
-Please visit this link to **verify the above** and your email:
+Please visit this link to verify the above and your email:
 
 {{ verify_url }}
 
