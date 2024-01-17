@@ -22,6 +22,7 @@ class SubmitTest(TestCase):
             "email": "email@example.com",
             "contact": "email@example.com",
             "resource": "https://example.com",
+            "terms": True,
         }
         response = self.client.post(reverse("index"), data)
         self.assertEqual(response.status_code, 302)
@@ -40,10 +41,12 @@ class MatchTest(TestCase):
             self.p1 = models.Entry.objects.create(
                 contact="p1@example.com",
                 resource="http://example.com/article/100",
+                is_approved=True,
             )
             self.p2 = models.Entry.objects.create(
                 contact="p2@elsewhere.com",
                 resource="http://example.com/article/100",
+                is_approved=True,
             )
 
     def test_match(self):
