@@ -34,6 +34,10 @@ ALLOWED_HOSTS = [
 
 ADMINS = [("Theodore Keloglou", "zf@sirodoht.com")]
 
+CANONICAL_URL = "https://01z.co"
+if DEBUG:
+    CANONICAL_URL = "http://localhost:8000"
+
 
 # Application definition
 
@@ -144,12 +148,15 @@ FORMS_URLFIELD_ASSUME_HTTPS = True
 # Email
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS = True
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_USE_TLS = False
 EMAIL_HOST = "smtp.postmarkapp.com"
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 
-EMAIL_FROM_HOST = "sirodoht.com"
-SERVER_EMAIL = "Django Robot <popoff@sirodoht.com"
+DEFAULT_FROM_EMAIL = "01z.co staff <admin@01z.co>"
+EMAIL_FROM_HOST = "01z.co"
+SERVER_EMAIL = "Django Robot <popoff@01z.co"
 EMAIL_SUBJECT_PREFIX = "[popoff] "
