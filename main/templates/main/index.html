@@ -24,7 +24,7 @@
         {{ form.email.errors }}
         <p style="padding-left: 16px;">
             <input type="email" name="email" required id="id_email" placeholder="email address">
-            <br><small>(private email)</small>
+            <br><small>(private email — how we contact you)</small>
         </p>
 
         <p style="padding-left: 16px;">
@@ -40,7 +40,7 @@
         {{ form.contact.errors }}
         <p style="padding-left: 16px;">
             <input type="text" name="contact" maxlength="300" required id="id_contact" placeholder="email address or phone">
-            <br><small>(how others contact you)</small>
+            <br><small>(distributed email — how others contact you)</small>
         </p>
 
         <p style="padding-left: 16px;">
@@ -53,17 +53,34 @@
             <br><small>(thing of interest)</small>
         </p>
 
+        <p style="padding-left: 16px;">
+            4. Click this checkbox to signify your agreement (a) that it is not our
+            responsibility if the data we send you are problematic in any way and (b)
+            that if you meet someone through 01z.co it is not our responsibility if
+            their behaviour is problematic in any way.
+        </p>
+        {{ form.terms.errors }}
+        <p style="padding-left: 16px;">
+            <input type="checkbox" name="terms" required id="id_terms">
+            <label for="id_terms">Fine.</label>
+            <br><small>(we cannot proceed unless this is fine)</small>
+        </p>
+
         {{ form.non_field_errors }}
         <p style="padding-left: 16px;">
             <input type="submit" value="Submit">
         </p>
 
         <p>
-            Within a few days, you will receive a list of people (their names and ways to
-            contact them) who have taken the same initiative. This list will enable you to
-            contact them, in order to arrange a meeting (online or offline) with persons for
-            which they are exclusively known to you by the fact that they requested a
-            dialogue about the same subject.
+            Within a few days, you will receive a list of people (their names and ways
+            to contact them) who have taken the same initiative. This list will enable
+            you to contact them in order to arrange a meeting (online or offline) with
+            persons for which they are exclusively known to you by the fact that they
+            requested a dialogue about the same subject.
+        </p>
+        <p>
+            To clarify: we cannot guarantee that there are people who have taken the
+            same initiative as you. In case there aren’t, we will not get in touch.
         </p>
     </form>
 
