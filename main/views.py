@@ -21,7 +21,7 @@ class CreateEntry(CreateView):
             return super().form_invalid(form)
 
         self.object = form.save()
-        url = f"{settings.CANONICAL_URL}{reverse_lazy("verify_success")}"
+        url = f"{settings.CANONICAL_URL}{reverse_lazy('verify_success')}"
         url += f"?key={str(self.object.verify_key)}"
         subject = "01z: welcome + verify email"
         content = render_to_string(
