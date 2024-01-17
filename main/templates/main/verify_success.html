@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<main>
+    <h1><a href="/">01z.co</a></h1>
+    <p>
+        <strong>email verified! thanks {{ email }}</strong>
+    </p>
+    <p>
+        Your information has been submitted and your email has been verified.
+    </p>
+    <p>
+        Within a few days, you will receive a list of people (their names and ways to
+        contact them) that are interested in the same thing of interest as you.
+    </p>
+    <p>
+        Of course, it is also probable that nobody else has declared to us their
+        interest to the thing of interest that you have. In that case, we will take no
+        action.
+    </p>
+    <blockquote style="border-color: chocolate;">
+        <p>
+            “At a first meeting in a coffee shop, say, the partners might establish their
+            identities by placing the book under discussion next to their cups.”
+        </p>
+        <footer>—Ivan Illich, <cite>Deschooling Society</cite>, 1971</footer>
+    </blockquote>
+</main>
+{% endblock %}
