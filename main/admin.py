@@ -38,15 +38,24 @@ class UserAdmin(DjUserAdmin):
     ordering = ["-id"]
 
 
+@admin.action(description="Approve selected entries")
+def make_approved(modeladmin, request, queryset):
+    queryset.update(is_approved=True)
+
+
 @admin.register(models.Entry)
 class EntryAdmin(admin.ModelAdmin):
     list_display = (
         "id",
+        "terms",
+        "is_verified",
+        "is_approved",
         "email",
         "contact",
         "resource",
     )
     search_fields = ("email", "contact", "resource")
+    actions = [make_approved]
 
 
 @admin.register(models.Matching)
