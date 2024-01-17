@@ -23,7 +23,7 @@ class CreateEntry(CreateView):
         self.object = form.save()
         url = f"{settings.CANONICAL_URL}{reverse_lazy('verify_success')}"
         url += f"?key={str(self.object.verify_key)}"
-        subject = "01z: welcome + verify email"
+        subject = f"01z: verify email for {self.object.resource}"
         content = render_to_string(
             "main/welcome_email.txt",
             {
