@@ -1,6 +1,9 @@
 from random import randint
 
-from django.shortcuts import redirect, render
+from django.conf import settings
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -9,24 +12,56 @@ from main import models
 
 class CreateEntry(CreateView):
     model = models.Entry
-    fields = ["email", "contact", "resource"]
+    fields = ["email", "contact", "resource", "terms"]
     template_name = "main/index.html"
 
     def form_valid(self, form):
+        if not form.cleaned_data.get("terms", False):
+            form.add_error(
+                "terms", "we’d love to but cannot proceed unless this is fine"
+            )
+            return super().form_invalid(form)
+
         self.object = form.save()
-        # TODO: send verification email
+        url = f"{settings.CANONICAL_URL}{reverse_lazy("verify_success")}"
+        url += f"?key={str(self.object.verify_key)}"
+        subject = "01z: welcome + verify email"
+        content = render_to_string(
+            "main/welcome_email.txt",
+            {
+                "email": self.object.email,
+                "resource": self.object.resource,
+                "contact": self.object.contact,
+                "verify_url": url,
+            },
+        )
+        send_mail(subject, content, settings.DEFAULT_FROM_EMAIL, [self.object.email])
         return super().form_valid(form)
 
     def get_success_url(self):
         url = reverse_lazy("submit_success")
-        url += "?id="
-        url += str(randint(1_000_000, 10_000_000))
+        url += "?key="
+        url += str(self.object.verify_key)
         return url
 
 
 def submit_success(request):
-    if request.GET.get("id") is not None:
+    if request.GET.get("key") is not None:
         return render(request, "main/submit_success.html")
+    else:
+        return redirect("index")
+
+
+def verify_success(request):
+    if request.GET.get("key") is not None:
+        entry = get_object_or_404(
+            models.Entry,
+            verify_key=request.GET.get("key"),
+        )
+        entry = models.Entry.objects.get(verify_key=request.GET.get("key"))
+        entry.is_verified = True
+        entry.save()
+        return render(request, "main/verify_success.html", {"email": entry.email})
     else:
         return redirect("index")
 
