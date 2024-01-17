@@ -44,7 +44,6 @@ class Command(BaseCommand):
         entry_list = models.Entry.objects.filter(is_approved=True)
         self.log(f"found {entry_list.count()} approved entries")
         for entry in entry_list:
-
             # ignore if entry is too new
             if entry.created_at > two_days_ago:
                 self.log(f"ignoring {entry}, was created in the last two days")
