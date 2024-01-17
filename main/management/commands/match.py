@@ -80,7 +80,7 @@ class Command(BaseCommand):
                     entry.has_received.add(sr_entry)
 
             self.log(f"        sending: {timezone.now()}")
-            inform_entries(
+            self.inform_entries(
                 receiver_entry=entry,
                 content_entry_list=content_entry_list,
             )
