@@ -47,23 +47,23 @@
     # repository
     - name: clone
       ansible.builtin.git:
-        repo: https://github.com/sirodoht/popoff
-        dest: /var/www/popoff
+        repo: https://github.com/sirodoht/z01
+        dest: /var/www/z01
         version: main
         accept_hostkey: true
       become_user: deploy
     - name: dependencies
       ansible.builtin.pip:
         virtualenv_command: python3 -m venv .venv
-        virtualenv: /var/www/popoff/.venv
-        requirements: /var/www/popoff/requirements.txt
+        virtualenv: /var/www/z01/.venv
+        requirements: /var/www/z01/requirements.txt
       become_user: deploy
 
     # systemd
     - name: systemd template
       ansible.builtin.template:
-        src: popoff.service.j2
-        dest: /etc/systemd/system/popoff.service
+        src: z01.service.j2
+        dest: /etc/systemd/system/z01.service
         owner: root
         group: root
         mode: '0644'
@@ -72,11 +72,11 @@
         daemon_reload: true
     - name: systemd enable
       ansible.builtin.systemd:
-        name: popoff
+        name: z01
         enabled: yes
     - name: systemd start
       ansible.builtin.systemd:
-        name: popoff
+        name: z01
         state: restarted
 
     # deployment specific
@@ -85,7 +85,7 @@
         cmd: |
           source .venv/bin/activate
           python3 manage.py collectstatic --no-input
-        chdir: /var/www/popoff
+        chdir: /var/www/z01
       args:
         executable: /bin/bash
       become_user: deploy
@@ -94,13 +94,13 @@
         cmd: |
           source .venv/bin/activate
           python3 manage.py migrate --no-input
-        chdir: /var/www/popoff
+        chdir: /var/www/z01
       args:
         executable: /bin/bash
       become_user: deploy
     - name: gunicorn restart
       ansible.builtin.systemd:
-        name: popoff
+        name: z01
         state: restarted
     - name: caddy restart
       ansible.builtin.systemd:
