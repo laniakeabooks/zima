@@ -158,5 +158,5 @@ EMAIL_PORT = 587
 
 DEFAULT_FROM_EMAIL = "01z.co <admin@01z.co>"
 EMAIL_FROM_HOST = "01z.co"
-SERVER_EMAIL = "Django Robot <robot@01z.co"
+SERVER_EMAIL = "Django Robot <robot@01z.co>"
 EMAIL_SUBJECT_PREFIX = "[01z] "
