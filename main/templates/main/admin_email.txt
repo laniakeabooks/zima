@@ -1,0 +1,16 @@
+Hi admin,
+
+Private email:
+
+{{ email }}
+
+Thing of interest:
+
+{{ resource }}
+
+Contact:
+
+{{ contact }}
+
+01z.co robot
+{{ canonical_url }}{% url 'admin:main_entry_changelist' %}
