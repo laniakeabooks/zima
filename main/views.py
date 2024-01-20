@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import mail_admins, send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -12,6 +12,20 @@ class CreateEntry(CreateView):
     model = models.Entry
     fields = ["email", "contact", "resource", "terms"]
     template_name = "main/index.html"
+
+    def notify_admin(self):
+        mail_admins(
+            f"admin: new entry: {self.object.resource}",
+            render_to_string(
+                "main/admin_email.txt",
+                {
+                    "email": self.object.email,
+                    "resource": self.object.resource,
+                    "contact": self.object.contact,
+                    "canonical_url": settings.CANONICAL_URL,
+                },
+            ),
+        )
 
     def form_valid(self, form):
         if not form.cleaned_data.get("terms", False):
@@ -34,6 +48,7 @@ class CreateEntry(CreateView):
             },
         )
         send_mail(subject, content, settings.DEFAULT_FROM_EMAIL, [self.object.email])
+        self.notify_admin()
         return super().form_valid(form)
 
     def get_success_url(self):
