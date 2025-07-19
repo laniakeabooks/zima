@@ -1,13 +1,13 @@
 [Unit]
-Description=z01
+Description=zima
 After=network.target
 
 [Service]
 Type=simple
 User=deploy
 Group=www-data
-WorkingDirectory=/var/www/z01
-ExecStart=/var/www/z01/.venv/bin/gunicorn -b 127.0.0.1:5002 -w 4 z01.wsgi
+WorkingDirectory=/var/www/zima
+ExecStart=/var/www/zima/.venv/bin/gunicorn -b 127.0.0.1:5002 -w 4 zima.wsgi
 ExecReload=/bin/kill -HUP $MAINPID
 Environment="DEBUG={{ debug }}"
 Environment="SECRET_KEY={{ secret_key }}"

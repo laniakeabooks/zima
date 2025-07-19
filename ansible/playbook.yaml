@@ -47,23 +47,23 @@
     # repository
     - name: clone
       ansible.builtin.git:
-        repo: https://github.com/sirodoht/z01
-        dest: /var/www/z01
+        repo: https://github.com/sirodoht/zima
+        dest: /var/www/zima
         version: main
         accept_hostkey: true
       become_user: deploy
     - name: dependencies
       ansible.builtin.pip:
         virtualenv_command: python3 -m venv .venv
-        virtualenv: /var/www/z01/.venv
-        requirements: /var/www/z01/requirements.txt
+        virtualenv: /var/www/zima/.venv
+        requirements: /var/www/zima/requirements.txt
       become_user: deploy
 
     # systemd
     - name: systemd template
       ansible.builtin.template:
-        src: z01.service.j2
-        dest: /etc/systemd/system/z01.service
+        src: zima.service.j2
+        dest: /etc/systemd/system/zima.service
         owner: root
         group: root
         mode: '0644'
@@ -72,11 +72,11 @@
         daemon_reload: true
     - name: systemd enable
       ansible.builtin.systemd:
-        name: z01
+        name: zima
         enabled: yes
     - name: systemd start
       ansible.builtin.systemd:
-        name: z01
+        name: zima
         state: restarted
 
     # deployment specific
@@ -85,7 +85,7 @@
         cmd: |
           source .venv/bin/activate
           python3 manage.py collectstatic --no-input
-        chdir: /var/www/z01
+        chdir: /var/www/zima
       args:
         executable: /bin/bash
       become_user: deploy
@@ -94,13 +94,13 @@
         cmd: |
           source .venv/bin/activate
           python3 manage.py migrate --no-input
-        chdir: /var/www/z01
+        chdir: /var/www/zima
       args:
         executable: /bin/bash
       become_user: deploy
     - name: gunicorn restart
       ansible.builtin.systemd:
-        name: z01
+        name: zima
         state: restarted
     - name: caddy restart
       ansible.builtin.systemd:
