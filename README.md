@@ -1,6 +1,4 @@
-# z01
-
-Code powering 01z.co
+# zima
 
 ## Development
 
@@ -24,4 +22,8 @@ python manage.py runserver
 
 ## License
 
-MIT
+Copyright Laniakea Books LTD
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3.
